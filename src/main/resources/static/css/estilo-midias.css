@@ -1,0 +1,661 @@
+/* ==========================================================================
+   DESIGN PROFISSIONAL SAAS - SOCIALMETRICS
+   Estilo limpo, direto, sem excessos de AI Slop (glows/pulso)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg-page: #F8FAFC;
+    --c-primary: #3B82F6;
+    --c-primary-hover: #2563EB;
+    --c-dark-navy: #0F172A;
+    --c-slate-header: #1E293B;
+    --c-border: #E2E8F0;
+    --c-border-subtle: #F1F5F9;
+    --c-text-main: #0F172A;
+    --c-text-muted: #64748B;
+    
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg-page);
+    color: var(--c-text-main);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================= Header Superior Corporativo (Enterprise Clean Slate) ================= */
+.app-header {
+    background: var(--c-dark-navy);
+    padding: 0.75rem 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.app-brand {
+    text-decoration: none !important;
+}
+
+.app-brand-text {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: -0.3px;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.h2-link {
+    color: #94A3B8 !important;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.15s ease;
+}
+
+.h2-link:hover {
+    color: #F1F5F9 !important;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Bloco de Usuário: Enterprise Clean Slate (Linear / Vercel style) */
+.user-pill {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 4px 8px;
+    gap: 8px !important;
+    transition: border-color 0.15s ease;
+}
+
+.user-pill:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.user-avatar-sm {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: #334155;
+    color: #F8FAFC;
+    font-weight: 600;
+    font-size: 0.72rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.user-info-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #F1F5F9;
+}
+
+.user-role-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    padding: 1px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+}
+
+.user-role-badge.role-admin {
+    background: rgba(59, 130, 246, 0.15);
+    color: #93C5FD;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.user-role-badge.role-analista {
+    background: rgba(148, 163, 184, 0.12);
+    color: #CBD5E1;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.user-separator {
+    width: 1px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-logout {
+    color: #94A3B8;
+    font-size: 0.88rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.15s ease;
+}
+
+.btn-logout:hover {
+    color: #F87171;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* ================= Tela de Login ================= */
+.login-body {
+    background: #0F172A;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 420px;
+}
+
+.login-box {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 2.2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+.login-box .app-brand-text {
+    color: #0F172A;
+    font-size: 1.6rem;
+}
+
+/* ================= Navbar de Módulos (Todas as Abas) ================= */
+.navbar-custom {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--c-border);
+    padding: 0.3rem 10% !important;
+}
+
+.navbar-custom .nav-link {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--c-text-muted);
+    padding: 0.6rem 0.95rem !important;
+    border-radius: 6px;
+    margin: 0 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.15s ease;
+}
+
+.navbar-custom .nav-link:hover {
+    color: var(--c-dark-navy);
+    background: #F1F5F9;
+}
+
+.navbar-custom .nav-link.active {
+    color: var(--c-primary) !important;
+    background: #EFF6FF !important;
+    font-weight: 600;
+}
+
+/* ================= Layout & Painéis (Proporção 10/80/10) ================= */
+.app-container {
+    width: 80% !important;
+    max-width: 1600px !important;
+    margin: 1.8rem auto;
+    flex: 1 0 auto;
+    padding: 0 !important;
+}
+
+.app-surface {
+    background: #FFFFFF;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--c-border);
+    box-shadow: var(--shadow-card);
+    padding: 2.2rem;
+    margin-bottom: 2rem;
+}
+
+.titulo-linha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--c-border-subtle);
+    margin-bottom: 1.8rem;
+}
+
+.titulo-linha h1 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--c-dark-navy);
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.titulo-linha p {
+    color: var(--c-text-muted);
+    font-size: 0.9rem;
+    margin: 0.2rem 0 0;
+}
+
+/* ================= Cards de Métricas Sóbrios e Nítidos ================= */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 1.8rem;
+}
+
+.kpi-card {
+    background: #FFFFFF;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-md);
+    padding: 1.4rem;
+    box-shadow: var(--shadow-card);
+    transition: border-color 0.15s ease;
+}
+
+.kpi-card:hover {
+    border-color: #94A3B8;
+}
+
+.kpi-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.kpi-label {
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--c-text-muted);
+}
+
+.kpi-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: #F1F5F9;
+    color: var(--c-dark-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.kpi-number {
+    font-size: 2.1rem;
+    font-weight: 750;
+    color: var(--c-dark-navy);
+    letter-spacing: -0.5px;
+    margin: 0.6rem 0 0.2rem;
+    line-height: 1.1;
+}
+
+.kpi-desc {
+    font-size: 0.8rem;
+    color: var(--c-text-muted);
+}
+
+/* ================= Ações Rápidas ================= */
+.action-card {
+    background: #FFFFFF;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-md);
+    padding: 1.6rem;
+    box-shadow: var(--shadow-card);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.15s ease;
+}
+
+.action-card:hover {
+    border-color: #94A3B8;
+}
+
+.action-card h5 {
+    font-size: 1.05rem;
+    font-weight: 650;
+    color: var(--c-dark-navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.action-card p {
+    font-size: 0.88rem;
+    color: var(--c-text-muted);
+    line-height: 1.5;
+    margin-bottom: 1.4rem;
+}
+
+/* ================= Tabelas Corporativas ================= */
+.custom-table-container {
+    background: #FFFFFF;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.table-custom {
+    margin-bottom: 0 !important;
+}
+
+.table-custom thead th {
+    background: #F8FAFC !important;
+    color: var(--c-text-muted) !important;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.95rem 1.1rem;
+    border-bottom: 1px solid var(--c-border);
+}
+
+.table-custom tbody td {
+    padding: 0.95rem 1.1rem;
+    vertical-align: middle;
+    color: var(--c-text-main);
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--c-border-subtle);
+}
+
+.table-custom tbody tr:hover td {
+    background: #F8FAFC;
+}
+
+/* ================= Botões Limpos e Profissionais ================= */
+.btn-clean-primary {
+    background: var(--c-dark-navy) !important;
+    border: 1px solid var(--c-dark-navy) !important;
+    color: #FFFFFF !important;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none !important;
+    transition: background 0.15s ease;
+}
+
+.btn-clean-primary:hover {
+    background: #334155 !important;
+    border-color: #334155 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-clean-outline {
+    background: #FFFFFF !important;
+    border: 1px solid var(--c-border) !important;
+    color: var(--c-dark-navy) !important;
+    font-weight: 500;
+    font-size: 0.86rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+}
+
+.btn-clean-outline:hover {
+    background: #F1F5F9 !important;
+    border-color: #CBD5E1 !important;
+    color: var(--c-dark-navy) !important;
+}
+
+.btn-action-edit {
+    color: var(--c-dark-navy);
+    background: #F1F5F9;
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-decoration: none !important;
+}
+
+.btn-action-edit:hover {
+    background: #E2E8F0;
+    color: var(--c-dark-navy);
+}
+
+.btn-action-del {
+    color: #DC2626;
+    background: #FEF2F2;
+    border: 1px solid #FEE2E2;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-decoration: none !important;
+}
+
+.btn-action-del:hover {
+    background: #DC2626;
+    color: #FFFFFF;
+}
+
+/* ================= Badges e Tags ================= */
+.badge-status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.badge-status.ativa {
+    background: #DCFCE7;
+    color: #166534;
+}
+
+.badge-status.pausada {
+    background: #FEF9C3;
+    color: #854D0E;
+}
+
+.badge-status.inativa, .badge-status.encerrada {
+    background: #F1F5F9;
+    color: #475569;
+}
+
+.badge-tag {
+    background: #F1F5F9;
+    color: #334155;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.badge-role.admin {
+    background: #EFF6FF;
+    color: #1D4ED8;
+    border: 1px solid #DBEAFE;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-role.analista {
+    background: #F8FAFC;
+    color: #475569;
+    border: 1px solid var(--c-border);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--c-dark-navy);
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ================= Formulários ================= */
+.form-card {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--c-dark-navy);
+    margin-bottom: 0.35rem;
+}
+
+.form-control, .form-select {
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 0.58rem 0.85rem;
+    font-size: 0.9rem;
+    color: var(--c-text-main);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* ================= Responsividade & Mobile Viewports ================= */
+.table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    border-radius: inherit;
+    scrollbar-width: thin;
+    scrollbar-color: #CBD5E1 transparent;
+}
+
+.table-responsive::-webkit-scrollbar {
+    height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #CBD5E1;
+    border-radius: 4px;
+}
+
+/* Evita quebra indesejada de textos nas tabelas em telas menores */
+.table-custom th, .table-custom td {
+    white-space: nowrap;
+}
+
+.table-custom td.text-wrap-mobile {
+    white-space: normal;
+    min-width: 180px;
+}
+
+@media (max-width: 1200px) {
+    .app-header, .navbar-custom {
+        padding-left: 5% !important;
+        padding-right: 5% !important;
+    }
+    .app-container {
+        width: 92% !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .app-header {
+        padding: 0.8rem 1rem !important;
+    }
+    .navbar-custom {
+        padding: 0.4rem 1rem !important;
+    }
+    .app-container {
+        width: 95% !important;
+        margin: 1rem auto;
+    }
+    .app-surface {
+        padding: 1.25rem;
+    }
+    .titulo-linha {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+    .titulo-linha a, .titulo-linha button, .titulo-linha div.d-flex {
+        width: 100%;
+        justify-content: stretch;
+    }
+    .titulo-linha .btn-modern-primary, .titulo-linha .btn-modern-outline {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    .navbar-nav {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .navbar-custom .nav-link {
+        padding: 0.6rem 0.8rem !important;
+        margin-bottom: 2px;
+    }
+}
+
+@media (max-width: 576px) {
+    .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    .app-header .d-flex {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .app-surface {
+        padding: 1rem;
+        border-radius: var(--radius-md);
+    }
+    .titulo-linha h1 {
+        font-size: 1.3rem;
+    }
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+}

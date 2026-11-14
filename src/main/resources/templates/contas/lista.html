@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Contas de Clientes - SocialMetrics</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="/css/estilo-midias.css" rel="stylesheet" th:href="@{/css/estilo-midias.css}"/>
+</head>
+<body>
+    <div th:replace="~{fragmentos/menu :: menu}"></div>
+
+    <main class="app-container animate-fade-in">
+        <div class="app-surface">
+            <div class="titulo-linha">
+                <div>
+                    <h1>Gestão de Contas</h1>
+                    <p>Catálogo de marcas e empresas clientes gerenciadas no ecossistema.</p>
+                </div>
+                <a class="btn-modern-primary" th:href="@{/contas/novo}">
+                    <i class="bi bi-plus-lg"></i> Cadastrar Nova Conta
+                </a>
+            </div>
+
+            <div class="custom-table-container">
+                <div class="table-responsive">
+                    <table class="table table-custom align-middle">
+                        <thead>
+                            <tr>
+                                <th># ID</th>
+                                <th>Marca / Razão Social</th>
+                                <th>Segmento</th>
+                                <th>Localização</th>
+                                <th>Porte</th>
+                                <th>Status</th>
+                                <th class="text-end">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="c : ${contas}">
+                                <td class="fw-bold text-muted" th:text="'#' + ${c.idConta}">#1</td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-3 bg-light d-flex align-items-center justify-content-center text-primary" style="width:38px; height:38px; border:1px solid #E2E8F0;">
+                                            <i class="bi bi-building"></i>
+                                        </div>
+                                        <span class="fw-bold text-dark" th:text="${c.nomeConta}">Marca Exemplo</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-light text-dark border px-2 py-1" th:text="${c.segmento}">Varejo</span>
+                                </td>
+                                <td>
+                                    <i class="bi bi-geo-alt text-muted me-1"></i>
+                                    <span th:text="${c.cidade}">São Paulo</span> - <span th:text="${c.estado}">SP</span>
+                                </td>
+                                <td class="text-muted" th:text="${c.porteEmpresa}">Grande</td>
+                                <td>
+                                    <span class="badge-status ativa" th:if="${c.statusConta == 'Ativa'}">
+                                        <i class="bi bi-dot"></i> Ativa
+                                    </span>
+                                    <span class="badge-status inativa" th:unless="${c.statusConta == 'Ativa'}">
+                                        <i class="bi bi-dot"></i> Inativa
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <div class="d-inline-flex gap-2">
+                                        <a th:href="@{/contas/editar/{id}(id=${c.idConta})}" class="btn-action-edit">
+                                            <i class="bi bi-pencil-square"></i> Editar
+                                        </a>
+                                        <a th:href="@{/contas/excluir/{id}(id=${c.idConta})}" class="btn-action-del" onclick="return confirm('Deseja realmente excluir esta conta?')">
+                                            <i class="bi bi-trash3"></i> Excluir
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(contas)}">
+                                <td colspan="7" class="text-center py-5 text-muted">
+                                    <i class="bi bi-inbox fs-1 d-block mb-2 text-secondary"></i>
+                                    Nenhuma conta cadastrada ainda. Clique no botão acima para cadastrar a primeira.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

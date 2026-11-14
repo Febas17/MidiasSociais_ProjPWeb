@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="3.0"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
+    <persistence-unit name="MidiasSociaisPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Lista explícita das 9 entidades mapeadas -->
+        <class>br.edu.eseg.midias_sociais.model.Conta</class>
+        <class>br.edu.eseg.midias_sociais.model.PerfilSocial</class>
+        <class>br.edu.eseg.midias_sociais.model.Campanha</class>
+        <class>br.edu.eseg.midias_sociais.model.Post</class>
+        <class>br.edu.eseg.midias_sociais.model.MetricaPost</class>
+        <class>br.edu.eseg.midias_sociais.model.Comentario</class>
+        <class>br.edu.eseg.midias_sociais.model.AudienciaMensal</class>
+        <class>br.edu.eseg.midias_sociais.model.Influenciador</class>
+        <class>br.edu.eseg.midias_sociais.model.Parceria</class>
+
+        <properties>
+            <!-- Conexão H2 persistente em arquivo local -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:file:./database/midias_sociais;AUTO_SERVER=TRUE;INIT=CREATE SCHEMA IF NOT EXISTS APP\;SET SCHEMA APP"/>
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+
+            <!-- Schema padrão APP -->
+            <property name="hibernate.default_schema" value="APP"/>
+            <property name="hibernate.hbm2ddl.create_namespaces" value="true"/>
+
+            <!-- Estratégia de geração do schema -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
+
+            <!-- Dialeto H2 e formatação dos comandos SQL -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.highlight_sql" value="true"/>
+
+            <!-- Pool de conexões -->
+            <property name="hibernate.connection.pool_size" value="5"/>
+        </properties>
+    </persistence-unit>
+</persistence>
