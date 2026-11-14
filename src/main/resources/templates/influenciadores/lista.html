@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Influenciadores - SocialMetrics</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="/css/estilo-midias.css" rel="stylesheet" th:href="@{/css/estilo-midias.css}"/>
+</head>
+<body>
+    <div th:replace="~{fragmentos/menu :: menu}"></div>
+
+    <main class="app-container">
+        <div class="app-surface">
+            <div class="titulo-linha">
+                <div>
+                    <h1>Criadores & Influenciadores</h1>
+                    <p>Catálogo de influenciadores digitais, engajamento médio e parcerias.</p>
+                </div>
+                <a class="btn-clean-primary" th:href="@{/influenciadores/novo}">
+                    <i class="bi bi-person-plus"></i> Novo Influenciador
+                </a>
+            </div>
+
+            <div class="custom-table-container">
+                <div class="table-responsive">
+                    <table class="table table-custom align-middle">
+                        <thead>
+                            <tr>
+                                <th># ID</th>
+                                <th>Criador</th>
+                                <th>Nicho</th>
+                                <th>Plataforma</th>
+                                <th>Seguidores</th>
+                                <th>Engajamento Médio</th>
+                                <th>Status Parceria</th>
+                                <th class="text-end">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="i : ${influenciadores}">
+                                <td class="fw-bold text-muted" th:text="'#' + ${i.idInfluenciador}">#1</td>
+                                <td>
+                                    <span class="fw-bold d-block text-dark" th:text="${i.nomeAnonimizado}">Influenciador 001</span>
+                                    <small class="text-muted"><span th:text="${i.cidade}">Campinas</span> - <span th:text="${i.estado}">SP</span></small>
+                                </td>
+                                <td>
+                                    <span class="badge bg-light text-dark border px-2 py-1" th:text="${i.nicho}">Finanças</span>
+                                </td>
+                                <td>
+                                    <span class="badge-tag" th:text="${i.plataformaPrincipal}">Instagram</span>
+                                </td>
+                                <td class="fw-bold" th:text="${#numbers.formatInteger(i.seguidores != null ? i.seguidores : 0, 1, 'POINT')}">340.000</td>
+                                <td class="fw-bold text-primary" th:text="${#numbers.formatPercent(i.taxaEngajamentoMedia != null ? i.taxaEngajamentoMedia : 0, 1, 2)}">5.99%</td>
+                                <td>
+                                    <span class="badge-status ativa" th:text="${i.statusParceria}">Ativa</span>
+                                </td>
+                                <td class="text-end">
+                                    <div class="d-inline-flex gap-2">
+                                        <a th:href="@{/influenciadores/editar/{id}(id=${i.idInfluenciador})}" class="btn-action-edit">
+                                            <i class="bi bi-pencil-square"></i> Editar
+                                        </a>
+                                        <a th:href="@{/influenciadores/excluir/{id}(id=${i.idInfluenciador})}" class="btn-action-del" onclick="return confirm('Deseja realmente excluir?')">
+                                            <i class="bi bi-trash3"></i> Excluir
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(influenciadores)}">
+                                <td colspan="8" class="text-center py-5 text-muted">
+                                    <i class="bi bi-person-video2 fs-1 d-block mb-2 text-secondary"></i>
+                                    Nenhum criador cadastrado.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

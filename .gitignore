@@ -1,0 +1,30 @@
+# Compilação e Build
+target/
+build/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Banco de dados local H2
+database/
+*.mv.db
+*.trace.db
+
+# Contexto do projeto e arquivos de apoio do professor
+ContextoProjeto/
+astah_export_original/
+
+# IDEs e Editores
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+.springBeans
+.sts4-cache
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
