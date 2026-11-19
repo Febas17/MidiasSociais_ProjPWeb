@@ -3,14 +3,9 @@ target/
 build/
 !.mvn/wrapper/maven-wrapper.jar
 
-# Banco de dados local H2
-database/
-*.mv.db
+# Logs/locks temporários do H2
+*.lock.db
 *.trace.db
-
-# Contexto do projeto e arquivos de apoio do professor
-ContextoProjeto/
-astah_export_original/
 
 # IDEs e Editores
 .idea/
