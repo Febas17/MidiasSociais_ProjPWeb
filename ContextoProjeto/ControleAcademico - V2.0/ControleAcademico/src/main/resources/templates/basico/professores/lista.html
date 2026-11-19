@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Professores — Sistema Acadêmico</title>
+    <link rel="stylesheet" th:href="@{/css/basico.css}">
+</head>
+<body>
+<div th:replace="~{basico/fragmentos/menu :: menu}"></div>
+<main class="conteudo app-page">
+    <section class="app-surface">
+        <div class="titulo-linha"
+             style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+            <div><h1>Professores</h1>
+                <p class="subtitulo">Consulte e gerencie os registros acadêmicos.</p></div>
+            <a class="botao" th:href="@{/basico/professores/novo}">+ Novo registro</a>
+        </div>
+        <p th:if="${mensagem}" th:text="${mensagem}" class="mensagem"></p>
+        <div class="painel-tabela table-responsive">
+            <table class="tabela">
+                <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Registro</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Departamento</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="professor : ${professores}">
+                    <td><img th:src="@{/professores/{id}/foto(id=${professor.id})}" alt="Foto do professor"
+                             width="48" height="48" loading="lazy"
+                             style="width:48px;height:48px;border-radius:50%;object-fit:cover"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">
+                        <span style="display:none;width:48px;height:48px;border-radius:50%;background:#e9eff7;align-items:center;justify-content:center">👤</span>
+                    </td>
+                    <td th:text="${professor.registro}"></td>
+                    <td th:text="${professor.nome}"></td>
+                    <td th:text="${professor.email}"></td>
+                    <td th:text="${professor.departamento.nome}"></td>
+                    <td>
+                        <div style="display:flex;gap:8px;align-items:center;flex-wrap:nowrap;white-space:nowrap">
+                            <a class="botao botao-secundario"
+                               th:href="@{/basico/professores/{id}/editar(id=${professor.id})}">Editar</a>
+                            <form th:action="@{/basico/professores/{id}/excluir(id=${professor.id})}" method="post"
+                                  style="margin:0">
+                                <button type="submit" class="botao botao-perigo"
+                                        onclick="return confirm('Excluir este professor?')">Excluir
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(professores)}">
+                    <td colspan="6">Nenhum professor cadastrado.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+</body>
+</html>

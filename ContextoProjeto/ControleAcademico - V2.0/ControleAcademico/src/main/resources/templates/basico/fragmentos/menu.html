@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="/css/basico.css" rel="stylesheet" th:href="@{/css/basico.css}"/>
+</head>
+<body>
+<div th:fragment="menu">
+    <header class="app-header"><a class="app-brand" href="/" th:href="@{/}"><span class="app-symbol"><svg
+            aria-hidden="true" fill="none" height="38" viewbox="0 0 48 48" width="38"><path
+            d="M3 17 24 7 45 17 24 27 3 17Z" stroke="white" stroke-linejoin="round" stroke-width="3"></path><path
+            d="M12 23v10c8 6 16 6 24 0V23" stroke="white" stroke-linejoin="round" stroke-width="3"></path><path
+            d="M44 18v15" stroke="white" stroke-width="3"></path></svg></span>Sistema Acadêmico</a></header>
+    <nav aria-label="Menu principal" class="app-subnav"><a th:href="@{/basico}">Início</a><a
+            th:href="@{/basico/departamentos}">Departamentos</a><a th:href="@{/basico/cursos}">Cursos</a><a
+            th:href="@{/basico/discentes}">Discentes</a><a th:href="@{/basico/professores}">Professores</a><a
+            th:href="@{/basico/disciplinas}">Disciplinas</a><a th:href="@{/basico/turmas}">Turmas</a><a
+            th:href="@{/basico/matriculas}">Matrículas</a><a th:href="@{/basico/enderecos}">Endereços</a><a
+            th:href="@{/basico/imagens}">Imagens</a></nav>
+</div>
+</body>
+</html>

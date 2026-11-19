@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Cadastro de Departamento — Sistema Acadêmico</title>
+    <link href="/css/basico.css" rel="stylesheet" th:href="@{/css/basico.css}"/>
+</head>
+<body>
+<div th:replace="~{basico/fragmentos/menu :: menu}"></div>
+<main class="conteudo app-page">
+    <section class="app-surface"><h1 class=""
+                                     th:text="${departamento.id == null} ? 'Novo Departamento' : 'Editar Departamento'">
+        Cadastro</h1>
+        <p class="subtitulo">Preencha os dados e salve o registro.</p>
+        <section class="painel">
+            <form method="post" th:action="@{/basico/departamentos/salvar}"><input name="id"
+                                                                                   th:value="${departamento.id}"
+                                                                                   type="hidden"/>
+                <div class="campo"><label for="nome">Nome</label><input class="" id="nome" maxlength="200" name="nome"
+                                                                        required="" th:value="${departamento.nome}"
+                                                                        type="text"/></div>
+                <div class="campo"><label for="sigla">Sigla</label><input class="" id="sigla" maxlength="10"
+                                                                          name="sigla" required=""
+                                                                          th:value="${departamento.sigla}" type="text"/>
+                </div>
+                <div class="acoes">
+                    <button class="botao" type="submit">Salvar</button>
+                    <a class="botao botao-secundario" th:href="@{/basico/departamentos}">Cancelar</a></div>
+            </form>
+        </section>
+    </section>
+</main>
+</body>
+</html>

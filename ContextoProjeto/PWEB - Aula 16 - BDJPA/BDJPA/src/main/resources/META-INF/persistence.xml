@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="3.0"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
+    <persistence-unit name="BDJPA" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Liste explicitamente as entidades -->
+        <class>br.edu.faculdade.bd.jpa.model.Departamento</class>
+        <class>br.edu.faculdade.bd.jpa.model.Curso</class>
+        <class>br.edu.faculdade.bd.jpa.Discente</class>
+        <class>br.edu.faculdade.bd.jpa.Imagem</class>
+
+        <properties>
+            <!-- Configuração da conexão H2 -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:file:./database/faculdade;AUTO_SERVER=TRUE"/>
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+
+            <!-- Schema padrão -->
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:h2:file:./database/faculdade;AUTO_SERVER=TRUE;INIT=CREATE SCHEMA IF NOT EXISTS APP\;SET SCHEMA APP"/>
+            <property name="hibernate.default_schema" value="APP"/>
+            <property name="hibernate.hbm2ddl.create_namespaces" value="true"/>
+
+            
+            <!-- Estratégia de criação do schema -->
+            <!-- use update (mais seguro) ou create-drop (para testes) -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
+
+            <!-- Dialeto para o Hibernate entender H2 -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+            <!-- Mostrar SQL no console -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.highlight_sql" value="true"/>
+
+            <!-- Pool de conexões simples -->
+            <property name="hibernate.connection.pool_size" value="5"/>
+        </properties>
+    </persistence-unit>
+</persistence>

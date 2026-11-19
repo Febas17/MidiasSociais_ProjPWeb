@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>
+        Discentes — Sistema Acadêmico
+    </title>
+    <link href="/css/basico.css" rel="stylesheet" th:href="@{/css/basico.css}"/>
+</head>
+<body>
+<div th:replace="~{basico/fragmentos/menu :: menu}">
+</div>
+<main class="conteudo app-page">
+    <section class="app-surface">
+        <div class="titulo-linha mb-3">
+            <div>
+                <h1 class="">
+                    Discentes
+                </h1>
+                <p class="subtitulo mb-0">
+                    Consulte e gerencie os registros acadêmicos.
+                </p>
+            </div>
+            <a class="botao" th:href="@{/basico/discentes/novo}">
+                + Novo registro
+            </a>
+        </div>
+        <div class="mensagem" role="status" th:if="${mensagem}" th:text="${mensagem}">
+        </div>
+        <div class="painel">
+            <div class="painel-tabela">
+                <table class="tabela">
+                    <thead>
+                    <tr>
+                        <th scope="col">
+                            Foto
+                        </th>
+                        <th scope="col">
+                            Matrícula
+                        </th>
+                        <th scope="col">
+                            Nome
+                        </th>
+                        <th scope="col">
+                            Curso
+                        </th>
+                        <th scope="col">
+                            CEP do endereço
+                        </th>
+                        <th scope="col">
+                            Ações
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${discentes}">
+                        <td style="width: 64px; white-space: nowrap;">
+                            <img loading="lazy" onerror="this.style.visibility='hidden'"
+                                 style="display:block;width:48px;height:48px;border-radius:50%;object-fit:cover;border:1px solid #d5dce4;"
+                                 th:alt="${'Foto de ' + item.nome}" th:src="@{/discentes/{id}/foto(id=${item.id})}"/>
+                        </td>
+                        <td th:text="${item.matricula}">
+                            —
+                        </td>
+                        <td th:text="${item.nome}">
+                            —
+                        </td>
+                        <td th:text="${item.curso.nome}">
+                            —
+                        </td>
+                        <td th:text="${item.endereco.cep}">
+                            —
+                        </td>
+                        <td>
+                            <div class="acoes"
+                                 style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;white-space:nowrap;">
+                                <a class="botao botao-secundario" style="white-space:nowrap;"
+                                   th:href="@{/basico/discentes/{id}/editar(id=${item.id})}">
+                                    Editar
+                                </a>
+                                <form method="post" style="display:inline-flex;margin:0;"
+                                      th:action="@{/basico/discentes/{id}/excluir(id=${item.id})}">
+                                    <button class="botao botao-perigo" style="white-space:nowrap;" type="submit">
+                                        Excluir
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(discentes)}">
+                        <td class="estado-vazio" colspan="6">
+                            Nenhum registro encontrado.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
+

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Cadastro de Discente — Sistema Acadêmico</title>
+    <link href="/css/basico.css" rel="stylesheet" th:href="@{/css/basico.css}"/>
+    <style>
+        .endereco-detalhes { margin: 24px 0; padding: 16px; border: 1px solid #d5dce4; border-radius: 8px; }
+        .endereco-detalhes summary { cursor: pointer; font-weight: bold; padding: 8px; }
+        .campos-endereco { padding-top: 18px; }
+    </style>
+    <style>
+        .foto-discente{width:90px;height:90px;border-radius:50%;object-fit:cover;border:1px solid #d5dce4;margin:8px 0}
+    </style>
+</head>
+<body>
+<div th:replace="~{basico/fragmentos/menu :: menu}"></div>
+<main class="conteudo app-page">
+    <section class="app-surface">
+        <h1 th:text="${discente.id == null} ? 'Novo Discente' : 'Editar Discente'">Novo Discente</h1>
+        <p class="subtitulo">Informe os dados acadêmicos. O endereço pode ser expandido quando necessário.</p>
+        <section class="painel">
+            <form enctype="multipart/form-data" method="post" th:action="@{/basico/discentes/salvar}">
+                <input name="id" th:value="${discente.id}" type="hidden"/>
+                <div class="campo">
+                    <label>Matrícula</label>
+                    <p th:if="${discente.id == null}">Será gerada automaticamente ao salvar.</p>
+                    <p th:if="${discente.id != null}" th:text="${discente.matricula}">000000-0</p>
+                </div>
+                <div class="campo">
+                    <label for="nome">Nome completo</label>
+                    <input class="" id="nome" maxlength="200" name="nome" required="" th:value="${discente.nome}"
+                           type="text"/>
+                </div>
+                <div class="campo">
+                    <label for="cursoId">Curso</label>
+                    <select class="" id="cursoId" name="cursoId" required="">
+                        <option value="">Selecione um curso</option>
+                        <option th:each="op : ${cursos}"
+                                th:selected="${discente.curso != null and discente.curso.id == op.id}"
+                                th:text="${op.nome}" th:value="${op.id}"></option>
+                    </select>
+                </div>
+                <div class="campo"><label for="foto">Foto do discente (PNG ou JPEG, até 2 MB)</label><input
+                        accept="image/png,image/jpeg" id="foto" name="foto" type="file"/>
+                    <p>Na edição, deixe sem selecionar arquivo para manter a imagem atual.</p>
+                    <div th:if="${discente.id != null}"><img alt="Foto atual" class="foto-discente"
+                                                             onerror="this.style.display='none'"
+                                                             th:src="@{/discentes/{id}/foto(id=${discente.id})}"/></div>
+                </div>
+                <details class="endereco-detalhes" id="secao-endereco"
+                         th:open="${discente.id != null and discente.endereco != null}">
+                    <summary>Endereço do discente (obrigatório)</summary>
+                    <div class="campos-endereco">
+                        <p>Informe o endereço antes de salvar. O complemento é opcional.</p>
+                        <div class="campo">
+                            <label for="cep">CEP</label>
+                            <input class="" id="cep" maxlength="9" name="cep" pattern="[0-9]{5}-?[0-9]{3}"
+                                   placeholder="00000-000" required=""
+                                   th:value="${discente.endereco != null ? discente.endereco.cep : ''}"
+                                   title="Informe oito dígitos, com ou sem hífen" type="text"/>
+                        </div>
+                        <div class="campo">
+                            <label for="logradouro">Logradouro</label>
+                            <input class="" id="logradouro" maxlength="200" name="logradouro" required=""
+                                   th:value="${discente.endereco != null ? discente.endereco.logradouro : ''}"
+                                   type="text"/>
+                        </div>
+                        <div class="campo">
+                            <label for="numero">Número</label>
+                            <input class="" id="numero" maxlength="20" name="numero" required=""
+                                   th:value="${discente.endereco != null ? discente.endereco.numero : ''}" type="text"/>
+                        </div>
+                        <div class="campo">
+                            <label for="complemento">Complemento (opcional)</label>
+                            <input class="" id="complemento" maxlength="100" name="complemento"
+                                   th:value="${discente.endereco != null ? discente.endereco.complemento : ''}"
+                                   type="text"/>
+                        </div>
+                        <div class="campo">
+                            <label for="bairro">Bairro</label>
+                            <input class="" id="bairro" maxlength="100" name="bairro" required=""
+                                   th:value="${discente.endereco != null ? discente.endereco.bairro : ''}" type="text"/>
+                        </div>
+                        <div class="campo">
+                            <label for="cidade">Cidade</label>
+                            <input class="" id="cidade" maxlength="100" name="cidade" required=""
+                                   th:value="${discente.endereco != null ? discente.endereco.cidade : ''}" type="text"/>
+                        </div>
+                        <div class="campo">
+                            <label for="uf">UF</label>
+                            <input class="" id="uf" maxlength="2" name="uf" pattern="[A-Za-z]{2}" required=""
+                                   style="text-transform: uppercase"
+                                   th:value="${discente.endereco != null ? discente.endereco.uf : ''}"
+                                   title="Informe duas letras" type="text"/>
+                        </div>
+                    </div>
+                </details>
+                <div class="acoes">
+                    <button class="botao" type="submit">Salvar discente</button>
+                    <a class="botao botao-secundario" th:href="@{/basico/discentes}">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </section>
+</main>
+<script>
+    // Ao validar um campo obrigatório dentro da seção fechada,
+    // expanda a seção para que o usuário veja e corrija o problema.
+    const secaoEndereco = document.getElementById('secao-endereco');
+    secaoEndereco.addEventListener('invalid', function () {
+      secaoEndereco.open = true;
+    }, true);
+</script>
+</body>
+</html>

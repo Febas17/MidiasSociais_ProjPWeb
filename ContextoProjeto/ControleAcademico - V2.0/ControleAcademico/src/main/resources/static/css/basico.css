@@ -1,0 +1,723 @@
+:root {
+    --azul: #17365d;
+    --cinza: #f3f6f9;
+    --borda: #d5dce4;
+    --texto: #253447;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--cinza);
+    color: var(--texto);
+}
+
+.topo {
+    background: var(--azul);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 18px 28px;
+    flex-wrap: wrap;
+}
+
+.topo a {
+    color: white;
+    text-decoration: none;
+    margin-right: 14px;
+}
+
+.topo a:hover {
+    text-decoration: underline;
+}
+
+.conteudo {
+    max-width: 1050px;
+    margin: 30px auto;
+    padding: 0 18px;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.painel {
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 16px;
+}
+
+.cabecalho-lista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.botao, button {
+    display: inline-block;
+    border: 0;
+    border-radius: 5px;
+    background: var(--azul);
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+.botao-secundario {
+    background: #5c6774;
+}
+
+.botao-perigo {
+    background: #a42132;
+}
+
+button:hover, .botao:hover {
+    filter: brightness(1.12);
+}
+
+.tabela {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 18px;
+    background: white;
+}
+
+.tabela th, .tabela td {
+    padding: 12px;
+    border-bottom: 1px solid var(--borda);
+    text-align: left;
+}
+
+.tabela th {
+    background: #e9eff7;
+}
+
+.campo {
+    margin: 15px 0;
+}
+
+.campo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.campo input, .campo select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #aab6c2;
+    border-radius: 5px;
+    font: inherit;
+}
+
+.acoes {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.acoes form {
+    display: inline;
+}
+
+.mensagem {
+    border-left: 4px solid #23855e;
+    background: #e4f6ec;
+    padding: 12px;
+    margin: 14px 0;
+}
+
+@media (max-width: 620px) {
+    .tabela {
+        font-size: 13px;
+    }
+    .tabela th, .tabela td {
+        padding: 7px;
+    }
+    .topo {
+        gap: 10px;
+    }
+}
+
+.endereco-detalhes {
+    margin-top: 24px;
+    padding: 16px;
+    border: 1px solid #d5dce4;
+    border-radius: 8px;
+}
+
+.endereco-detalhes summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 8px;
+}
+
+.campos-endereco {
+    padding-top: 20px;
+}
+
+/* Interface construída somente com CSS próprio: visual acadêmico simples */ body {
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f6f9;
+    color:#253447;
+    margin:0
+}
+
+.app-header {
+    background:#17365d;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    padding:21px 16px
+}
+
+.app-brand {
+    color:#fff;
+    text-decoration:none;
+    font-size:29px;
+    font-weight:bold
+}
+
+.app-brand:hover {
+    color:#fff
+}
+
+.app-subnav {
+    background:white;
+    border-bottom:1px solid #d5dce4;
+    padding:15px 18px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px
+}
+
+.app-subnav a {
+    font-size:14px;
+    color:#17365d;
+    text-decoration:none;
+    padding:7px 9px
+}
+
+.app-subnav a:hover {
+    text-decoration:underline;
+    background:#e9eff7
+}
+
+.app-page,.app-hero {
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 18px
+}
+
+.app-surface,.app-home {
+    border:1px solid #d5dce4;
+    background:white;
+    padding:24px;
+    border-radius:4px
+}
+
+h1,.app-home h1,.app-surface h1 {
+    text-align:center;
+    color:#17365d;
+    margin:0 0 10px
+}
+
+.subtitulo,.app-home>p {
+    text-align:center;
+    color:#546273;
+    margin:0 0 25px
+}
+
+.titulo-linha {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap
+}
+
+.titulo-linha h1 {
+    text-align:left
+}
+
+.campo {
+    margin-bottom:15px
+}
+
+.campo label {
+    display:block;
+    font-weight:bold;
+    margin-bottom:5px
+}
+
+.campo input,.campo select,.campo textarea {
+    max-width:100%;
+    width:100%;
+    box-sizing:border-box;
+    border:1px solid #aab6c2;
+    border-radius:3px;
+    padding:9px
+}
+
+.botao,button {
+    background:#17365d;
+    color:white;
+    border:0;
+    border-radius:3px;
+    padding:9px 14px;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block
+}
+
+.botao-secundario {
+    background:#5c6774
+}
+
+.botao-perigo {
+    background:#a42132
+}
+
+.acoes {
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    align-items:center
+}
+
+.acoes form {
+    display:inline
+}
+
+.tabela {
+    border-collapse:collapse;
+    width:100%
+}
+
+.tabela th,.tabela td {
+    border:1px solid #d5dce4;
+    text-align:left;
+    padding:10px
+}
+
+.tabela th {
+    background:#e9eff7
+}
+
+.painel {
+    padding:15px 0
+}
+
+.mensagem {
+    padding:12px;
+    background:#e4f6ec;
+    border-left:4px solid #23855e
+}
+
+.dashboard-section {
+    font-size:19px;
+    color:#17365d;
+    margin:28px 0 12px
+}
+
+.kpi-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(185px,1fr));
+    gap:12px
+}
+
+.kpi {
+    background:#fff;
+    border:1px solid #bdcad7;
+    padding:20px;
+    text-align:center
+}
+
+.kpi-title {
+    font-weight:600;
+    color:#253447
+}
+
+.kpi-value {
+    display:block;
+    font-size:32px;
+    color:#17365d;
+    margin:12px 0
+}
+
+.kpi-note,.dashboard-meta {
+    color:#5c6774;
+    font-size:13px
+}
+
+.dashboard-meta {
+    margin-top:22px
+}
+
+@media(max-width:700px) {
+    .app-header {
+        padding:14px
+    }
+    .app-brand {
+        font-size:23px
+    }
+    .app-subnav {
+        gap:4px;
+        padding:8px
+    }
+    .app-subnav a {
+        padding:7px
+    }
+    .app-surface,.app-home {
+        padding:16px
+    }
+    .tabela {
+        font-size:12px
+    }
+}
+
+/* APARÊNCIA DIDÁTICA SIMPLES — HTML + CSS manual */ :root {
+    --azul:#17365d;
+    --borda:#cbd5e1;
+    --texto:#253447
+}
+
+body {
+    background:#f3f6f9!important;
+    font-family:Arial,Helvetica,sans-serif!important;
+    color:#253447!important
+}
+
+.app-header {
+    background:#17365d!important;
+    box-shadow:none!important;
+    border-radius:0!important;
+    min-height:78px!important;
+    display:flex!important;
+    justify-content:center!important;
+    position:relative;
+    padding:18px 20px!important
+}
+
+.app-brand {
+    color:#fff!important;
+    text-align:center!important;
+    font-size:28px!important;
+    font-weight:bold!important;
+    letter-spacing:0!important
+}
+
+.app-symbol {
+    color:white!important;
+    position:absolute;
+    left:30px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:32px!important;
+    filter:grayscale(1) brightness(0) invert(1)
+}
+
+.app-subnav {
+    background:#fff!important;
+    border-bottom:1px solid #cbd5e1!important;
+    box-shadow:none!important;
+    justify-content:center!important;
+    gap:4px!important;
+    padding:11px!important
+}
+
+.app-subnav a {
+    border-radius:3px!important;
+    color:#17365d!important;
+    padding:9px 12px!important;
+    font-size:14px!important
+}
+
+.app-subnav a:hover {
+    background:#e9eff7!important
+}
+
+.app-page,.app-hero {
+    max-width:1130px!important;
+    margin:26px auto!important;
+    padding:0 16px!important
+}
+
+.app-surface,.app-home {
+    background:#fff!important;
+    border:1px solid #cbd5e1!important;
+    border-radius:4px!important;
+    box-shadow:none!important;
+    padding:24px!important
+}
+
+.app-surface h1,.app-home h1 {
+    text-align:center!important;
+    font-size:27px!important;
+    color:#17365d!important
+}
+
+.app-surface .subtitulo,.app-home p {
+    text-align:center!important
+}
+
+.app-surface .card {
+    border-radius:4px!important;
+    box-shadow:none!important
+}
+
+.app-surface .botao,.app-surface button {
+    border-radius:3px!important
+}
+
+.kpi-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(175px,1fr));
+    gap:14px;
+    margin:26px 0
+}
+
+.kpi {
+    border:1px solid #cbd5e1;
+    background:#fff;
+    padding:18px 14px;
+    text-align:center;
+    border-radius:3px;
+    box-shadow:none
+}
+
+.kpi-value {
+    font-size:34px;
+    font-weight:bold;
+    color:#17365d;
+    display:block;
+    margin:9px 0
+}
+
+.kpi-title {
+    font-size:14px;
+    font-weight:bold
+}
+
+.kpi-note {
+    font-size:12px;
+    color:#64748b
+}
+
+.dashboard-section {
+    margin:30px 0 8px;
+    border-bottom:1px solid #ddd;
+    padding-bottom:8px;
+    color:#17365d;
+    font-size:19px;
+    text-align:center
+}
+
+.dashboard-meta {
+    text-align:center;
+    color:#64748b;
+    margin-top:8px;
+    font-size:13px
+}
+
+@media(max-width:700px) {
+    .app-symbol {
+        position:static;
+        transform:none
+    }
+    .app-header {
+        gap:12px!important
+    }
+    .app-brand {
+        font-size:22px!important
+    }
+}
+
+/* Ajustes finais: icone acadêmico SVG branco, dimensões previsíveis e acessibilidade */ .app-header {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    min-height:80px;
+    position:relative
+}
+
+.app-header .app-symbol {
+    position:static!important;
+    transform:none!important;
+    filter:none!important;
+    flex:0 0 auto;
+    width:38px;
+    height:38px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center
+}
+
+.app-header .app-symbol svg {
+    display:block;
+    width:36px;
+    height:36px;
+    max-width:36px;
+    max-height:36px;
+    overflow:visible;
+    fill:none
+}
+
+.app-header .app-symbol svg path {
+    stroke:#fff;
+    fill:none
+}
+
+.app-header .app-brand {
+    color:#fff!important;
+    text-decoration:none!important;
+    line-height:1.3;
+    text-align:center
+}
+
+.app-header .app-brand:hover {
+    text-decoration:underline!important
+}
+
+.app-subnav {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:8px
+}
+
+.app-subnav a {
+    text-decoration:none;
+    white-space:nowrap
+}
+
+.app-home,.app-surface {
+    min-width:0
+}
+
+.painel-tabela,.table-responsive {
+    overflow-x:auto;
+    max-width:100%
+}
+
+.kpi-grid {
+    align-items:stretch
+}
+
+.kpi {
+    min-width:0
+}
+
+.kpi-value {
+    font-variant-numeric:tabular-nums
+}
+
+@media(max-width:700px) {
+    .app-header {
+        flex-wrap:wrap
+    }
+    .app-subnav {
+        gap:4px
+    }
+    .app-header .app-brand {
+        font-size:22px!important
+    }
+}
+
+/* Layout geral: titulo à esquerda, menu centralizado e conteudo de largura 90% */ html {
+    min-height:100%;
+}
+
+body {
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    margin:0;
+}
+
+.app-header {
+    justify-content:flex-start !important;
+    text-align:left !important;
+    padding-left:5% !important;
+    padding-right:5% !important;
+    flex-shrink:0;
+}
+
+.app-brand {
+    display:inline-flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:12px;
+    text-align:left;
+}
+
+.app-subnav {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center !important;
+    gap:8px 16px;
+    padding:12px 5%;
+    flex-shrink:0;
+    text-align:center;
+}
+
+.app-subnav a {
+    white-space:nowrap;
+}
+
+main.app-page, main.app-hero, main.conteudo, main.app-conteudo {
+    box-sizing:border-box;
+    width:90% !important;
+    max-width:none !important;
+    margin:24px auto 0 !important;
+    padding:0 0 24px !important;
+    flex:1 0 auto;
+    display:flex;
+    flex-direction:column;
+}
+
+main > .app-surface, main > .app-home {
+    box-sizing:border-box;
+    flex:1 0 auto;
+    width:100%;
+    min-height:100%;
+}
+
+.app-home .kpi-grid {
+    width:100%;
+}
+
+.painel-tabela {
+    width:100%;
+    overflow-x:auto;
+}
+
+@media(max-width:650px) {
+    .app-header {
+        padding-left:5% !important;
+    }
+    .app-subnav {
+        gap:6px 10px;
+    }
+    main.app-page,main.app-hero,main.conteudo {
+        margin-top:14px !important;
+    }
+}

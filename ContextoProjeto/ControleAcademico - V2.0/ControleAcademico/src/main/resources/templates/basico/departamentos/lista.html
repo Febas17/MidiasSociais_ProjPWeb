@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Departamentos — Sistema Acadêmico</title>
+    <link href="/css/basico.css" rel="stylesheet" th:href="@{/css/basico.css}"/>
+</head>
+<body>
+<div th:replace="~{basico/fragmentos/menu :: menu}"></div>
+<main class="conteudo app-page">
+    <section class="app-surface">
+        <div class="titulo-linha mb-3">
+            <div><h1 class="">Departamentos</h1>
+                <p class="subtitulo mb-0">Consulte e gerencie os registros acadêmicos.</p></div>
+            <a class="botao" th:href="@{/basico/departamentos/novo}">+ Novo registro</a></div>
+        <div class="mensagem" role="status" th:if="${mensagem}" th:text="${mensagem}"></div>
+        <div class="painel">
+            <div class="painel-tabela">
+                <table class="tabela">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Sigla</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${departamentos}">
+                        <td th:text="${item.nome}">—</td>
+                        <td th:text="${item.sigla}">—</td>
+                        <td>
+                            <div class="acoes"><a class="botao botao-secundario"
+                                                  th:href="@{/basico/departamentos/{id}/editar(id=${item.id})}">Editar</a>
+                                <form method="post" th:action="@{/basico/departamentos/{id}/excluir(id=${item.id})}">
+                                    <button class="botao botao-perigo" type="submit">Excluir</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(departamentos)}">
+                        <td class="estado-vazio" colspan="3">Nenhum registro encontrado.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
