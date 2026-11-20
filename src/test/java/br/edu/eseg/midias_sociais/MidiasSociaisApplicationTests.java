@@ -1,5 +1,6 @@
 package br.edu.eseg.midias_sociais;
 
+import br.edu.eseg.midias_sociais.model.Conta;
 import br.edu.eseg.midias_sociais.repository.ContaRepository;
 import br.edu.eseg.midias_sociais.repository.UsuarioRepository;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -76,5 +78,39 @@ class MidiasSociaisApplicationTests {
 
         mockMvc.perform(get("/usuarios").session(session))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @Transactional
+    void deveCriarEExcluirContaComRollbackSemAlterarDadosReais() throws Exception {
+        long totalInicial = contaRepository.count();
+
+        MvcResult loginResult = mockMvc.perform(post("/login")
+                        .param("username", "fabricio")
+                        .param("senha", "admin123"))
+                .andExpect(status().is3xxRedirection())
+                .andReturn();
+
+        MockHttpSession session = (MockHttpSession) loginResult.getRequest().getSession(false);
+
+        Conta contaTeste = Conta.builder()
+                .nomeConta("Conta Temporária Teste")
+                .segmento("Tecnologia")
+                .cidade("São Paulo")
+                .estado("SP")
+                .regiao("Sudeste")
+                .porteEmpresa("Pequeno porte")
+                .anoInicioOperacao(2026)
+                .statusConta("Ativa")
+                .build();
+        contaTeste = contaRepository.save(contaTeste);
+
+        assertThat(contaRepository.count()).isEqualTo(totalInicial + 1);
+
+        mockMvc.perform(get("/contas/excluir/" + contaTeste.getIdConta()).session(session))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/contas"));
+
+        assertThat(contaRepository.count()).isEqualTo(totalInicial);
     }
 }
