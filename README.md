@@ -19,7 +19,7 @@ Aplicação web full stack desenvolvida em **Java + Spring Boot 3.5.7** para mod
 ## 2. Pré-requisitos e Execução
 
 ### Pré-requisitos
-* **JDK 21 ou 22** (ex.: Amazon Corretto 22) configurado em `JAVA_HOME`
+* **JDK 21 ou 22** (ex.: Eclipse Adoptium / Amazon Corretto) — caso `JAVA_HOME` não esteja definida, o `mvnw.cmd` tenta detectá-la automaticamente pelo `PATH` ou pelas pastas padrão de instalação no Windows
 * Maven Wrapper incluído no repositório (`mvnw.cmd` no Windows / `./mvnw` no Linux/Mac)
 
 ### Como Executar
